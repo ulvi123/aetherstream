@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    function:
+      definition: pricesIn
+    stream:
+      bindings:
+        pricesIn-in-0:
+          destination: aether.prices.raw
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
+

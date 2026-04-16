@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.34/ec547ef414ab1d2c040118fb9c1c265ada63af14/lombok-1.18.34.jar" />
+        </processorPath>
+        <module name="AetherStream.aether-beacon.main" />
+        <module name="AetherStream.aether-gateway.main" />
+        <module name="AetherStream.aether-common.main" />
+        <module name="AetherStream.aether-ledger.main" />
+        <module name="AetherStream.aether-pulse.main" />
+        <module name="AetherStream.aether-catalyst.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="AetherStream.aether-catalyst.test" />
+        <module name="AetherStream.aether-pulse.test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aether-beacon" target="23" />
+      <module name="aether-beacon.main" target="23" />
+      <module name="aether-beacon.test" target="23" />
+      <module name="aether-catalyst" target="23" />
+      <module name="aether-catalyst.main" target="23" />
+      <module name="aether-catalyst.test" target="23" />
+      <module name="aether-common" target="23" />
+      <module name="aether-common.main" target="23" />
+      <module name="aether-common.test" target="23" />
+      <module name="aether-gateway" target="23" />
+      <module name="aether-gateway.main" target="23" />
+      <module name="aether-gateway.test" target="23" />
+      <module name="aether-ledger" target="23" />
+      <module name="aether-ledger.main" target="23" />
+      <module name="aether-ledger.test" target="23" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AetherStream.aether-catalyst" options="-parameters" />
+      <module name="AetherStream.aether-catalyst.main" options="-parameters" />
+      <module name="AetherStream.aether-catalyst.test" options="-parameters" />
+      <module name="AetherStream.aether-pulse" options="-parameters" />
+      <module name="AetherStream.aether-pulse.main" options="-parameters" />
+      <module name="AetherStream.aether-pulse.test" options="-parameters" />
+    </option>
+  </component>
+</project>

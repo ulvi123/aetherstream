@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    function:
+      definition: pricesOut
+    stream:
+      bindings:
+        pricesOut-out-0:
+          destination: aether.prices.raw
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
+
+server:
+  port: 8081
