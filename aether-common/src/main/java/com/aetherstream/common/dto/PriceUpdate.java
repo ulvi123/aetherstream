@@ -5,21 +5,17 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 public record PriceUpdate(
-   String symbol,
-   BigDecimal price,
-   String exchange,
-   Instant timestamp
+        String exchange,
+        String symbol,
+        double price,
+        long timestamp
 ) {
-    //compact controller-no need for this. call/ java does this for me automatically
     public PriceUpdate {
-         if(symbol.isBlank()){
-             throw new IllegalArgumentException("Symbol cannot be null");
-         }
-        if (price == null || price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Price must be greater than zero");
-        }
-        if(timestamp == null){
-             timestamp = Instant.now();
-         }
+      if(exchange == null || exchange.isEmpty()) {
+          throw new IllegalArgumentException("Exchange cannot be null or empty");
+      }
+      if(price<=0){
+          throw new IllegalArgumentException("Price cannot be less than or equal to price");
+      }
     }
 }

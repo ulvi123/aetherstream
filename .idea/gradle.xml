@@ -5,7 +5,7 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="homebrew-23" />
+        <option name="gradleJvm" value="corretto-22" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -17,16 +17,6 @@
             <option value="$PROJECT_DIR$/aether-pulse" />
           </set>
         </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/aether-pulse" />
-        <option name="gradleJvm" value="homebrew-23" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/aether-pulse" />
-          </set>
-        </option>
-        <option name="myGradleHome" value="" />
       </GradleProjectSettings>
     </option>
   </component>

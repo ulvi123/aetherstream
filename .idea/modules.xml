@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-beacon/AetherStream.aether-beacon.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-beacon/AetherStream.aether-beacon.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-catalyst/AetherStream.aether-catalyst.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-catalyst/AetherStream.aether-catalyst.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-common/AetherStream.aether-common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-common/AetherStream.aether-common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-gateway/AetherStream.aether-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-gateway/AetherStream.aether-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-ledger/AetherStream.aether-ledger.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-ledger/AetherStream.aether-ledger.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aether-pulse/AetherStream.aether-pulse.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aether-pulse/AetherStream.aether-pulse.main.iml" />
     </modules>
   </component>
 </project>

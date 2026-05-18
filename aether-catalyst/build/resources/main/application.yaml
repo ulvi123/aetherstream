@@ -1,4 +1,8 @@
 spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/tradingStore
+    username: w8lwwdu
+    password: ""
   cloud:
     function:
       definition: pricesIn
@@ -7,6 +11,7 @@ spring:
         pricesIn-in-0:
           destination: aether.prices.raw
           content-type: application/json
+          group: aether-catalyst
       kafka:
         binder:
           brokers: localhost:9092
