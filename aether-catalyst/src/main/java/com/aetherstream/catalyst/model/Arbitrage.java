@@ -9,7 +9,7 @@ import java.time.Instant;
 @Table("arbitrage_opportunity")
 public record Arbitrage(
         @Id
-        Long id, // R2DBC uses null/numeric wrapping to detect new records for auto-increment
+        Long id,
 
         @Column("market_pair")
         String marketPair,
@@ -32,7 +32,6 @@ public record Arbitrage(
         @Column("created_at")
         Instant createdAt
 ) {
-    // Compact constructor to enforce defaults (like a timestamp) when creating new opportunities
     public Arbitrage {
         if (createdAt == null) {
             createdAt = Instant.now();

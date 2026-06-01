@@ -1,8 +1,12 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/tradingStore
-    username: w8lwwdu
-    password: ""
+    url: r2dbc:postgresql://localhost:5433/tradingStore
+    username: postgres
+    password: postgres
+    pool:
+      initial-size: 10
+      max-size: 25
+      max-idle-time: 15m
   cloud:
     function:
       definition: pricesIn

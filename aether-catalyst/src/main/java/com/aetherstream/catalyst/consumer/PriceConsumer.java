@@ -1,6 +1,7 @@
 package com.aetherstream.catalyst.consumer;
 import com.aetherstream.catalyst.model.Arbitrage;
 import com.aetherstream.catalyst.repository.ArbitrageRepository;
+import com.aetherstream.catalyst.service.ArbitrageBroadcastingService;
 import com.aetherstream.common.dto.PriceUpdate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.util.Comparator;
 import java.util.function.Consumer;
@@ -19,11 +21,16 @@ public class PriceConsumer {
 
     private final ArbitrageRepository arbitrageRepository;
 
+    private final ArbitrageBroadcastingService arbitrageBroadcastingService;
+
     private final Logger logger = LoggerFactory.getLogger(PriceConsumer.class);
 
-    public PriceConsumer(ArbitrageRepository arbitrageRepository) {
+    public PriceConsumer(ArbitrageRepository arbitrageRepository, ArbitrageBroadcastingService arbitrageBroadcastingService ) {
         this.arbitrageRepository = arbitrageRepository;
+        this.arbitrageBroadcastingService = arbitrageBroadcastingService;
     }
+
+
     @Bean
     public Consumer<Flux<PriceUpdate>> pricesIn(){
         return flux -> flux
@@ -37,9 +44,10 @@ public class PriceConsumer {
                             .max(Comparator.comparingDouble(PriceUpdate::price))
                             .orElseThrow(IllegalStateException::new);
 
-                    BigDecimal buyPrice = new BigDecimal(lowest.price());
-                    BigDecimal sellPrice = new BigDecimal(highest.price());
-                    BigDecimal grossSpread = sellPrice.subtract(buyPrice);
+                    BigDecimal buyPrice = new BigDecimal(lowest.price()).setScale(2, RoundingMode.HALF_EVEN);
+                    BigDecimal sellPrice = new BigDecimal(highest.price()).setScale(2, RoundingMode.HALF_EVEN);
+                    BigDecimal grossSpread = sellPrice.subtract(buyPrice).setScale(2, RoundingMode.HALF_EVEN);
+
 
                     if(grossSpread.compareTo(BigDecimal.ZERO) > 0){
                         Arbitrage arbitrageOpportunity = new Arbitrage(
@@ -54,12 +62,16 @@ public class PriceConsumer {
                         );
 
                         return arbitrageRepository.save(arbitrageOpportunity)
-                                .doOnSuccess(saved -> logger.info("💰 Saved Arbitrage: +${} ({} -> {})", saved.grossSpread(), saved.buyExchange(),saved.sellExchange())  )
+                                .doOnNext( saved -> {
+                                    logger.info("Saved Arbitrage: +${} ({}- {})", saved.grossSpread(), saved.buyExchange(), saved.sellExchange());
+                                    arbitrageBroadcastingService.broadcast(saved);
+                                })
                                 .onErrorResume(e->{
                                     logger.error("Error while saving arbitrage", e);
                                     return Mono.empty();
                                 });
                     }
+
 
                     return Mono.empty();
                 })

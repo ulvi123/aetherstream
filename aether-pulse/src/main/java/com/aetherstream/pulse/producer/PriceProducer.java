@@ -15,6 +15,7 @@ public class PriceProducer {
 
     private static final ExchangeEmulator emulator = new ExchangeEmulator();
 
+
     @Bean
     public Supplier<Flux<PriceUpdate>> pricesOut(ExchangeEmulator emulator){
         return () -> emulator.streamPrices()

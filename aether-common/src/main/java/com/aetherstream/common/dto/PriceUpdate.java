@@ -1,9 +1,5 @@
 package com.aetherstream.common.dto;
 
-
-import java.math.BigDecimal;
-import java.time.Instant;
-
 public record PriceUpdate(
         String exchange,
         String symbol,
