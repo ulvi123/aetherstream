@@ -1,8 +1,9 @@
 package com.aetherstream.catalyst.controller;
 
-
 import com.aetherstream.catalyst.model.Arbitrage;
 import com.aetherstream.catalyst.service.ArbitrageBroadcastingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import reactor.core.publisher.Flux;
 public class ArbitrageController {
 
     private final ArbitrageBroadcastingService arbitrageBroadcastingService;
+    private static final Logger logger = LoggerFactory.getLogger(ArbitrageController.class);
 
     public ArbitrageController(ArbitrageBroadcastingService arbitrageBroadcastingService){
         this.arbitrageBroadcastingService = arbitrageBroadcastingService;
@@ -27,6 +29,6 @@ public class ArbitrageController {
                         .event("arbitrage-opportunity")
                         .data(arbitrage)
                         .build())
-                .doOnCancel(() -> System.out.println("Client disconnected from arbitrage stream"));
+                .doOnCancel(() -> logger.info("Client disconnected from arbitrage stream"));
     }
 }
